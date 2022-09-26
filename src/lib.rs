@@ -1,11 +1,14 @@
+mod entities;
 mod resource;
 
-use std::any::Any;
+use crate::entities::Entities;
 use crate::resource::Resource;
+use std::any::Any;
 
-#[derive(Default,Debug)]
+#[derive(Default, Debug)]
 pub struct World {
     resources: Resource,
+    entities: Entities,
 }
 
 impl World {
@@ -13,7 +16,7 @@ impl World {
         Self::default()
     }
 
-    pub fn add_resource(&mut self, resource_data: impl Any){
+    pub fn add_resource(&mut self, resource_data: impl Any) {
         self.resources.add(resource_data);
     }
 
@@ -44,8 +47,11 @@ impl World {
     pub fn delete_resource<T: Any>(&mut self) {
         self.resources.remove::<T>();
     }
+
+    pub fn register_component<T: Any + 'static>(&mut self) {
+        self.en
+    }
 }
 
 #[cfg(test)]
-mod tests {
-}
+mod tests {}
